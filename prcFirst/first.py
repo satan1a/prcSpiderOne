@@ -31,7 +31,7 @@ class Extract:
 
         # 使用 BeautifulSoup 解析页面源代码
         soup = BeautifulSoup(request.text, "lxml")
-        title = soup.find("h1", class_="post-title").a.text.strip().encode("utf-8")
+        title = soup.find("h1", class_="post-title").a.text.strip()
 
         print(title)
         return title
@@ -42,6 +42,7 @@ class Store:
         self.content = content
 
     def store_one(self, content):
-        with io.open('title.txt', "ab+",) as f:
+        # 使用 io 将网页中提取的内容使用 utf-8 编码，可以解决有中文字符时的报错问题
+        with io.open('title.txt', "a+",encoding="utf-8") as f:
             f.write(content)
             f.close()
