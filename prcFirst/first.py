@@ -42,7 +42,7 @@ class Store:
         self.content = content
 
     def store_one(self, content):
-        # 使用 io 将网页中提取的内容使用 utf-8 编码，可以解决有中文字符时的报错问题
+        # 使用 io 将
         with io.open('title.txt', "a+",encoding="utf-8") as f:
             f.write(content)
             f.close()
